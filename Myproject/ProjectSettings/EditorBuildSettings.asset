@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/aScenes/SelectModeScene.unity
+    guid: 6eeca66ffb2fcfc448d0c55cb8551f87
+  - enabled: 1
+    path: Assets/aScenes/TutorialOculus.unity
+    guid: 351fe525537ecab498ac16d72acf03f2
+  - enabled: 1
+    path: Assets/aScenes/TutorialKinect.unity
+    guid: 4f35256460a251442824f1a511b90571
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d31358352d12a0e4ca33ef67cce93b3e, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: ed383687e357b024888f9ddd80301c40, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: bd9deabe60aadd244aa1404629a8e21f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 54069d5b039f29b4d8951b06de8fc93b, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c52a7bcae80b96b42a715ac4cfc95691, type: 2}
