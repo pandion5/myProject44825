@@ -8,7 +8,7 @@ public class FeetCounter : MonoBehaviour
 
     private void Start()
     {
-        if (transform.parent.gameObject.name == "joint_ToeLT")
+        if (transform.parent.gameObject.name == "Left_Ankle_Joint_01")
             side = "Left";
         else
             side = "Right";

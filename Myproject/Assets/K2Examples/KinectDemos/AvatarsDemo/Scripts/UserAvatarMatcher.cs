@@ -137,7 +137,7 @@ public class UserAvatarMatcher : MonoBehaviour
 
 		if (avatarModel) 
 		{
-			Vector3 userPos = Vector3.zero;  // new Vector3(userIndex, 0, 0);
+			Vector3 userPos = new Vector3(0,-10,0);  // new Vector3(userIndex, 0, 0);
             Quaternion userRot = Quaternion.Euler(!mirroredMovement ? Vector3.zero : new Vector3(0, 180, 0));
 
             //Debug.Log("User " + userIndex + ", ID: " + userId + ", pos: " + kinectManager.GetUserPosition(userId) + ", k.pos: " + kinectManager.GetUserKinectPosition(userId, true));

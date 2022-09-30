@@ -49,50 +49,21 @@ public class KinectGameManager : MonoBehaviour
     {
         StartCoroutine(deltaStepInit());
     }
-    
-    public void StartWalking()
-    {
-        StartCoroutine(deltaStepInit());
-    }
-
-    IEnumerator deltaStepInit()
-    {
-        if (player)
-            while (true)
-            {
-                deltaStep = 0;
-                
-                yield return new WaitForSeconds(3f);
-                /*
-                if (deltaStep < 1)
-                    player.GetComponent<Rigidbody>().velocity = Vector3.forward;// * 0.1f;
-                else if (deltaStep == 1)
-                    player.GetComponent<Rigidbody>().velocity = Vector3.forward * moveSpeed;
-                else
-                    player.GetComponent<Rigidbody>().velocity = Vector3.forward * moveSpeed + Vector3.forward * (deltaStep - 2);
-                */
-                
-            }
-    }
 
     private void FixedUpdate()
     {
-        if(player)
-            if (neck)
-            {
-                //Debug.Log(neck.transform.localRotation);
-                Target.transform.rotation = Quaternion.Euler(new Vector3(0, player.transform.eulerAngles.y+neck.transform.eulerAngles.y, 0));
-            }
-            else
-            {
-                Target.transform.rotation = Quaternion.Euler(Vector3.zero);
-            }
+            
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(kinectManager.avatarControllers.Count == 1)
+         
+    }
+
+    private void LateUpdate()
+    {
+        if (kinectManager.avatarControllers.Count >= 1)
         {
             if (!avatarController)
             {
@@ -105,20 +76,30 @@ public class KinectGameManager : MonoBehaviour
             }
 
             Walk();
-        } 
-    }
 
-    private void LateUpdate()
-    {
-        if (kinectManager.avatarControllers.Count == 1)
-        {
-                if (deltaStep < 1)
-                    player.GetComponent<Rigidbody>().velocity = Target.transform.forward * 0.1f / 2;
-                else if (deltaStep == 1)
-                    player.GetComponent<Rigidbody>().velocity = Target.transform.forward * moveSpeed / 2;
-                else
-                    player.GetComponent<Rigidbody>().velocity = (Target.transform.forward * moveSpeed + Vector3.forward * (deltaStep - 2)) / 2;
-                Debug.Log("test");
+            if (deltaStep > 0)
+                player.GetComponent<slow>().inputY = 1.0f;
+            else
+                player.GetComponent<slow>().inputY = 0.0f;
+
+
+
+            float angle =transform.eulerAngles.y+ neck.transform.eulerAngles.y;
+            Debug.Log(angle);
+            if (angle > 10)
+            {
+                player.GetComponent<slow>().inputX = 1.0f;
+            }
+            else if (angle < -10)
+            {
+                player.GetComponent<slow>().inputX = -1.0f;
+            }
+            else
+            {
+                player.GetComponent<slow>().inputX = 0;
+            }
+
+
         }
     }
 
@@ -144,27 +125,39 @@ public class KinectGameManager : MonoBehaviour
             state = true;
         }
 
-        if(state)
+        if (state)
         {
             deltaStep++;
         }
     }
 
+    IEnumerator deltaStepInit()
+    {
+        if (player)
+            while (true)
+            {
+                deltaStep = 0;
+
+                yield return new WaitForSeconds(2f);
+
+            }
+    }
+
     void Setup(AvatarController avatarControllers)
     {
-        if (leftFeet = GameObject.Find("mixamorig2:LeftToeBase"))
+        if (leftFeet = GameObject.Find("Left_Ankle_Joint_01"))
         {
-            if (rightFeet = GameObject.Find("mixamorig2:RightToeBase"))
+            if (rightFeet = GameObject.Find("Right_Ankle_Joint_01"))
             {
-                leftFeetCollider = GameObject.Instantiate(feetCollider);
-                rightFeetCollider = GameObject.Instantiate(feetCollider);
+                leftFeetCollider = GameObject.Instantiate(feetCollider, leftFeet.transform);
+                rightFeetCollider = GameObject.Instantiate(feetCollider, rightFeet.transform);
 
                 leftFeetCollider.transform.SetParent(leftFeet.transform);
                 rightFeetCollider.transform.SetParent(rightFeet.transform);
             }
         }
 
-        if (neck = GameObject.Find("mixamorig2:Neck"))
+        if (neck = GameObject.Find("Neck"))
         {
             return;
         }

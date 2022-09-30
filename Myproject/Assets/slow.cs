@@ -5,6 +5,10 @@ using UnityEngine;
 public class slow : MonoBehaviour
 {
     public float speedTreshold = 0.1f;
+
+    public float inputY;//전진 입력 ( 키넥트 )
+    public float inputX;//회전 입력 ( 키넥트)
+
     [Range(0, 1)]
     public float smoothing = 1;
     public GameObject player;
@@ -27,8 +31,8 @@ public class slow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = inputX;//Input.GetAxis("Horizontal");
+        float vertical = inputY;//Input.GetAxis("Vertical");
 
         Vector3 position = transform.position;
 
@@ -43,26 +47,26 @@ public class slow : MonoBehaviour
 
         Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(previousRotation);
 
-
-
         //Local Speed
         headsetLocalSpeed = transform.InverseTransformDirection(headsetSpeed);
         previousPos = player.transform.position;
         previousRotation = transform.rotation;
 
-        deltaRotation.ToAngleAxis(out float angle, out Vector3 aixs);
+        deltaRotation.ToAngleAxis(out float angle, out Vector3 axis);
 
         angle *= Mathf.Deg2Rad;
-        
-        angularVelocity = (1.0f / Time.deltaTime) * angle * axis);
+
+
+        angularVelocity = ((1.0f / Time.deltaTime) * angle * axis);
 
         //Set Animator Values
         float previousDirectionX = animator.GetFloat("DirectionX");
         float previousDirectionY = animator.GetFloat("DirectionY");
-        isMoving = headsetLocalSpeed.magnitude > speedTreshold;
+        isMoving = headsetLocalSpeed.magnitude > speedTreshold || angularVelocity.magnitude > speedTreshold;
+
 
         animator.SetBool("isMoving", isMoving);
-        animator.SetFloat("DirectionX", Mathf.Lerp(previousDirectionX, Mathf.Clamp(headsetLocalSpeed.x, -1, 1), smoothing));
+        animator.SetFloat("DirectionX", Mathf.Lerp(previousDirectionX, Mathf.Clamp(angularVelocity.y, -1, 1), smoothing));
         animator.SetFloat("DirectionY", Mathf.Lerp(previousDirectionY, Mathf.Clamp(headsetLocalSpeed.z, -1, 1), smoothing));
     }
 }
