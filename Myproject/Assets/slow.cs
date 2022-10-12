@@ -36,8 +36,6 @@ public class slow : MonoBehaviour
 
         Vector3 position = transform.position;
 
-
-
         player.transform.Translate(Vector3.forward * Time.deltaTime * vertical * 2);
         player.transform.Rotate(Vector3.up * Time.deltaTime * horizontal * 45);
 
@@ -69,4 +67,6 @@ public class slow : MonoBehaviour
         animator.SetFloat("DirectionX", Mathf.Lerp(previousDirectionX, Mathf.Clamp(angularVelocity.y, -1, 1), smoothing));
         animator.SetFloat("DirectionY", Mathf.Lerp(previousDirectionY, Mathf.Clamp(headsetLocalSpeed.z, -1, 1), smoothing));
     }
+
+    
 }

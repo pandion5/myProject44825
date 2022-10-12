@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class KinectGameManager : MonoBehaviour
 {
     public static KinectGameManager instance;
@@ -44,6 +44,10 @@ public class KinectGameManager : MonoBehaviour
     [Header("Walking Rate")]
     public int deltaStep;
 
+    public float fixFront = 0;
+    public TextMeshPro txtFixFront;
+    public TextMeshPro txtCurrent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +62,10 @@ public class KinectGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            fixFront = calcAngle();
+        }
     }
 
     private void LateUpdate()
@@ -84,13 +91,13 @@ public class KinectGameManager : MonoBehaviour
 
 
 
-            float angle =transform.eulerAngles.y+ neck.transform.eulerAngles.y;
-            Debug.Log(angle);
-            if (angle > 10)
+            float angle = calcAngle();
+
+            if (angle > fixFront + 5)
             {
                 player.GetComponent<slow>().inputX = 1.0f;
             }
-            else if (angle < -10)
+            else if (angle < fixFront - 5)
             {
                 player.GetComponent<slow>().inputX = -1.0f;
             }
@@ -161,5 +168,50 @@ public class KinectGameManager : MonoBehaviour
         {
             return;
         }
+    }
+
+    public float calcAngle()
+    {
+        Vector3 angle = neck.transform.localEulerAngles;
+        float x = angle.x;
+        float y = angle.y;
+        float z = angle.z;
+
+        if (Vector3.Dot(neck.transform.up, Vector3.up) >= 0f)
+        {
+            if (angle.x >= 0f && angle.x <= 90f)
+            {
+                x = angle.x;
+            }
+            if (angle.x >= 270f && angle.x <= 360f)
+            {
+                x = angle.x - 360f;
+            }
+        }
+        if (Vector3.Dot(neck.transform.up, Vector3.up) < 0f)
+        {
+            if (angle.x >= 0f && angle.x <= 90f)
+            {
+                x = 180 - angle.x;
+            }
+            if (angle.x >= 270f && angle.x <= 360f)
+            {
+                x = 180 - angle.x;
+            }
+        }
+
+        if (angle.y > 180)
+        {
+            y = angle.y - 360f;
+        }
+
+        if (angle.z > 180)
+        {
+            z = angle.z - 360f;
+        }
+
+        //Debug.Log(angle + " :::: " + Mathf.Round(x) + " , " + (Mathf.Round(y)) + " , " + Mathf.Round(z));
+        Debug.Log(Mathf.Round(y));
+        return Mathf.Round(y);    
     }
 }
