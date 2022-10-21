@@ -104,11 +104,11 @@ public class GameManager : MonoBehaviour
 
     void KeyDown_UpArrow()
     {
-        kinectGameManagerScript.fixFront++;
+        kinectGameManagerScript.rotationLimit++;
     }
     void KeyDown_DownArrow()
     {
-        kinectGameManagerScript.fixFront--;
+        kinectGameManagerScript.rotationLimit--;
     }
     void KeyDown_Esc()
     {
