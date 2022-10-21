@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 public class KinectGameManager : MonoBehaviour
 {
     public static KinectGameManager instance;
@@ -45,8 +44,7 @@ public class KinectGameManager : MonoBehaviour
     public int deltaStep;
 
     public float fixFront = 0;
-    public TextMeshPro txtFixFront;
-    public TextMeshPro txtCurrent;
+    public int rotationLimit = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -62,10 +60,12 @@ public class KinectGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            fixFront = calcAngle();
-        }
+
+    }
+
+    public void FixFront()
+    {
+        fixFront = calcAngle();
     }
 
     private void LateUpdate()
@@ -85,25 +85,25 @@ public class KinectGameManager : MonoBehaviour
             Walk();
 
             if (deltaStep > 0)
-                player.GetComponent<slow>().inputY = 1.0f;
+                player.GetComponent<KinectWalk>().inputY = 1.0f;
             else
-                player.GetComponent<slow>().inputY = 0.0f;
+                player.GetComponent<KinectWalk>().inputY = 0.0f;
 
 
 
             float angle = calcAngle();
 
-            if (angle > fixFront + 5)
+            if (angle > fixFront + rotationLimit)
             {
-                player.GetComponent<slow>().inputX = 1.0f;
+                player.GetComponent<KinectWalk>().inputX = 1.0f;
             }
-            else if (angle < fixFront - 5)
+            else if (angle < fixFront - rotationLimit)
             {
-                player.GetComponent<slow>().inputX = -1.0f;
+                player.GetComponent<KinectWalk>().inputX = -1.0f;
             }
             else
             {
-                player.GetComponent<slow>().inputX = 0;
+                player.GetComponent<KinectWalk>().inputX = 0;
             }
 
 

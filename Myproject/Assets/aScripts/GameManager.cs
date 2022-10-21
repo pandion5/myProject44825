@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
+    private Dictionary<KeyCode, Action> keyDictionary;
+    private bool isPause = false;
+
+    public KinectGameManager kinectGameManagerScript;
+    public KinectWalk kinectWalkScript;
+    public UIManager uiManagerScript;
+
+    public GameObject debugUI;
 
     private void Awake()
     {
@@ -36,12 +45,79 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        keyDictionary = new Dictionary<KeyCode, Action>
+        {
+            {KeyCode.F4,  KeyDown_F4},
+            {KeyCode.Space,  KeyDown_Space},
+            {KeyCode.UpArrow,  KeyDown_UpArrow},
+            {KeyCode.DownArrow,  KeyDown_DownArrow},
+            {KeyCode.Escape,  KeyDown_Esc},
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.anyKeyDown)
+        {
+            foreach(var dic in keyDictionary)
+            {
+                dic.Value();
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        uiManagerScript.SetDebugText(TextCheck());
+    }
+
+    string TextCheck()
+    {
+        string s = 
+            "DEBUG\n\n" +
+            "< Kinect >\n" +
+            "Is Walking: " + kinectWalkScript.isMoving + "\n" +
+            "Fix Front: "+ kinectGameManagerScript.fixFront+ "\n" +
+            "Rotation Limit : ¡¾"+ kinectGameManagerScript.rotationLimit+ "\n\n" +
+            "<Test>" +
+            "Test Order: 1 > 2 > 3 > 4" +
+            "< Key Setting >" +
+            "Debug Text: F4" +
+            "Fix Front: Space" +
+            "Up Limit: ¡è" +
+            "Down Limit : ¡é" +
+            "Pause / Resume : Esc";
+        return s;
+    }
+    void KeyDown_F4()
+    {
+        debugUI.SetActive(!debugUI.activeSelf);
+    }
+    void KeyDown_Space()
+    {
+        kinectGameManagerScript.FixFront();
+    }
+
+    void KeyDown_UpArrow()
+    {
+        kinectGameManagerScript.fixFront++;
+    }
+    void KeyDown_DownArrow()
+    {
+        kinectGameManagerScript.fixFront--;
+    }
+    void KeyDown_Esc()
+    {
+        if (!isPause)
+        {
+            Time.timeScale = 0;
+            isPause = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isPause = true;
+        }
     }
 }
