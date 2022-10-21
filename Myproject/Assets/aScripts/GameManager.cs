@@ -62,7 +62,10 @@ public class GameManager : MonoBehaviour
         {
             foreach(var dic in keyDictionary)
             {
-                dic.Value();
+                if (Input.GetKeyDown(dic.Key))
+                {
+                    dic.Value();
+                }
             }
         }
     }
@@ -80,14 +83,14 @@ public class GameManager : MonoBehaviour
             "Is Walking: " + kinectWalkScript.isMoving + "\n" +
             "Fix Front: "+ kinectGameManagerScript.fixFront+ "\n" +
             "Rotation Limit : กพ"+ kinectGameManagerScript.rotationLimit+ "\n\n" +
-            "<Test>" +
-            "Test Order: 1 > 2 > 3 > 4" +
-            "< Key Setting >" +
-            "Debug Text: F4" +
-            "Fix Front: Space" +
-            "Up Limit: ก่" +
-            "Down Limit : ก้" +
-            "Pause / Resume : Esc";
+            "<Test>\n" +
+            "Test Order: 1 > 2 > 3 > 4\n\n" +
+            "< Key Setting >\n" +
+            "Debug Text: F4\n" +
+            "Fix Front: Space\n" +
+            "Up Limit: ก่\n" +
+            "Down Limit : ก้\n" +
+            "Pause / Resume : Esc\n";
         return s;
     }
     void KeyDown_F4()
