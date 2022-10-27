@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     {
         txtDebug.SetText(s);
     }
+    private void Start()
+    {
+        GameManager.Instance.uiManagerScript = this;
+    }
 
     void Update()
     {

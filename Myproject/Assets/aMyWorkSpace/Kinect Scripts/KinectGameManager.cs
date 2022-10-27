@@ -49,6 +49,7 @@ public class KinectGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.kinectGameManagerScript = this;
         StartCoroutine(deltaStepInit());
     }
 

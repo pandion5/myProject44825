@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImmortalPlayer : MonoBehaviour
+public class PlayerHelper : MonoBehaviour
 {
-    public bool isKinect = true;
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.player = this.gameObject;
+        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame

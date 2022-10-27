@@ -23,6 +23,7 @@ public class KinectWalk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.kinectWalkScript = this;
         animator = GetComponent<Animator>();
         previousPos = transform.position;
         previousRotation = transform.rotation;

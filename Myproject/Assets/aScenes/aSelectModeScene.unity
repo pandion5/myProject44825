@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2186.0479, g: 2350.623, b: 3606.0742, a: 1}
+  m_IndirectSpecularColor: {r: 2161.378, g: 2266.3613, b: 3306.5781, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -456,7 +456,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 579328672}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: changeScene
+        m_MethodName: ChangeScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -589,12 +589,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 579328672}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: changeScene
+        m_MethodName: ChangeScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -715,6 +715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0952f0df0c1a0ca4ca7eba2f012341d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kinectGameManagerScript: {fileID: 0}
+  kinectWalkScript: {fileID: 0}
+  uiManagerScript: {fileID: 0}
+  debugUI: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &579328671
 Transform:
   m_ObjectHideFlags: 0
@@ -741,6 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cad001c1500ed429fa4e0dfee9c892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txtDebug: {fileID: 0}
 --- !u!1 &634400708
 GameObject:
   m_ObjectHideFlags: 0

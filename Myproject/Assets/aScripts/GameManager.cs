@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManagerScript;
 
     public GameObject debugUI;
+    public GameObject player;
 
     private void Awake()
     {
@@ -40,6 +42,16 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public void ChangeScene(int idx)
+    {
+        SceneManager.LoadScene(idx);
+    }
+
+    public void MovePlayer(Transform transform)
+    {
+        player.transform.position = transform.position;
     }
 
     // Start is called before the first frame update
@@ -120,7 +132,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            isPause = true;
+            isPause = false;
         }
     }
 }
