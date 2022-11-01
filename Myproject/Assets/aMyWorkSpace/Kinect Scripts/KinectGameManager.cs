@@ -144,9 +144,11 @@ public class KinectGameManager : MonoBehaviour
         if (player)
             while (true)
             {
-
-                deltaStep = 0;
-                yield return new WaitForSeconds(4f);
+                if (deltaStep >= 3)
+                    deltaStep -= 3;
+                else
+                    deltaStep = 0;
+                yield return new WaitForSeconds(2f);
 
             }
     }
