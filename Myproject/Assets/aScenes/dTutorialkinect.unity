@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2157.6963, g: 1826.5059, b: 1961.4961, a: 1}
+  m_IndirectSpecularColor: {r: 2158.5166, g: 1826.6465, b: 1961.0898, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -771,8 +771,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "DEBUG\n\n<Kinect>\nIs Walking : False\nFix Front : 0\nRotation Limit :
-    \xB15\nIsTracked : False\n\n<Test>\nTest Order : 1>2>3>4\n\n<Key Setting>\nDebug
+  m_text: "DEBUG\n\n<Kinect>\nIs Walking : False\nStep Count : 0\nFix Front : 0\nRotation
+    Limit : \xB15\nIsTracked : False\n\n<Test>\nTest Order : 1>2>3>4\n\n<Key Setting>\nDebug
     Text : F4\nFix Front : Space\nUp Limit : \u2191\nDown Limit : \u2193\nPause/Resume
     : Esc\n\n\n\n\n"
   m_isRightToLeft: 0

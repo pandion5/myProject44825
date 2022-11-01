@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             {KeyCode.DownArrow,  KeyDown_DownArrow},
             {KeyCode.Escape,  KeyDown_Esc},
         };
+        
     }
 
     // Update is called once per frame
@@ -93,7 +94,8 @@ public class GameManager : MonoBehaviour
             "DEBUG\n\n" +
             "< Kinect >\n" +
             "Is Walking: " + kinectWalkScript.isMoving + "\n" +
-            "Fix Front: "+ kinectGameManagerScript.fixFront+ "\n" +
+            "Step Count : "+ kinectGameManagerScript.deltaStep + "\n" +
+            "Fix Front: " + kinectGameManagerScript.fixFront+ "\n" +
             "Rotation Limit : ¡¾"+ kinectGameManagerScript.rotationLimit+ "\n\n" +
             "<Test>\n" +
             "Test Order: 1 > 2 > 3 > 4\n\n" +
