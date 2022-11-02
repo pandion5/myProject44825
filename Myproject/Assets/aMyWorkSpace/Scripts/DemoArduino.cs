@@ -24,21 +24,25 @@ public class DemoArduino : MonoBehaviour
     private string baudRate = "9600";
 
     private Dictionary<KeyCode, Action> keyDictionary;
+    private bool isWalking = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        keyDictionary = new Dictionary<KeyCode, Action>
+        {
+            {KeyCode.Delete,  KeyDown_Delete},
+            {KeyCode.KeypadPlus,  KeyDown_UpArrow},
+        };
+
         serial = new SerialPort(portNumber.ToString(), int.Parse(baudRate));
         if (!serial.IsOpen)
         {
             serial.Open();
         }
 
-        keyDictionary = new Dictionary<KeyCode, Action>
-        {
-            {KeyCode.Delete,  KeyDown_Delete},
-            {KeyCode.UpArrow,  KeyDown_UpArrow},
-        };
+
     }
 
     void KeyDown_Delete()
@@ -58,16 +62,17 @@ public class DemoArduino : MonoBehaviour
 
     void KeyDown_UpArrow()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime);
+        isWalking = !isWalking;
     }
 
     private void Update()
     {
+        
         if (!serial.IsOpen)
         {
             serial.Open();
         }
-
+        
         if (Input.anyKeyDown)
         {
             foreach (var dic in keyDictionary)
@@ -80,6 +85,12 @@ public class DemoArduino : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(isWalking)
+            transform.Translate(Vector3.forward * Time.deltaTime);
+        
+    }
     // Update is called once per frame
 
     private void OnTriggerStay(Collider other)
