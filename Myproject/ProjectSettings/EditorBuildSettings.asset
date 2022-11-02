@@ -13,13 +13,16 @@ EditorBuildSettings:
     guid: de22da66d79476349a3baf0ab24d2139
   - enabled: 1
     path: Assets/aScenes/cForestOculus.unity
-    guid: 64148a1cc0b019d499fad5257afe5d45
+    guid: c173aaaf84ac05b43a330ecc8f52fa96
   - enabled: 1
     path: Assets/aScenes/dTutorialkinect.unity
     guid: 351fe525537ecab498ac16d72acf03f2
   - enabled: 1
     path: Assets/aScenes/eForestKinect.unity
     guid: 4131afde4dd6adf49b627410ae501d7b
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d31358352d12a0e4ca33ef67cce93b3e, type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: ed383687e357b024888f9ddd80301c40, type: 2}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2157.6963, g: 1826.5059, b: 1961.4961, a: 1}
+  m_IndirectSpecularColor: {r: 2157.8037, g: 1826.2266, b: 1960.9102, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -184,6 +184,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c676ced370bd6f9439689192ca95d12b, type: 3}
+--- !u!1 &487801604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4030521538327070640, guid: 926f3ac1e2f5d414ebf098111ef5ef5b, type: 3}
+  m_PrefabInstance: {fileID: 1484663362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &487801612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487801604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714eba93945aeeb46bc1f09355a08999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &570044287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,9 +1631,12 @@ GameObject:
   - component: {fileID: 5053303607510051373}
   - component: {fileID: 5053303607510051375}
   - component: {fileID: 5053303607510051376}
+  - component: {fileID: 5053303607510051377}
+  - component: {fileID: 5053303607510051378}
+  - component: {fileID: 5053303607510051379}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1681,6 +1701,45 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 5053303607510053258}
   m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.1176
+--- !u!114 &5053303607510051377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053303607510051372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2e750e7374fec488dc2fb35a61d010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Delete
+  portNumber: 4
+  baudRate: 9600
+--- !u!114 &5053303607510051378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053303607510051372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40a6f44aae98d04ea2f27eb7d1232a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5053303607510051379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053303607510051372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714eba93945aeeb46bc1f09355a08999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5053303607510051906
 GameObject:
   m_ObjectHideFlags: 0

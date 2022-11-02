@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class DemoArduino : MonoBehaviour
         COM9, COM10, COM11, COM12,
         COM13, COM14, COM15, COM16
     }
+    public string key = "Delete";
 
     private SerialPort serial;
     private string fanvalue;
@@ -20,6 +22,8 @@ public class DemoArduino : MonoBehaviour
     private PortNumber portNumber = PortNumber.COM5;
     [SerializeField]
     private string baudRate = "9600";
+
+    private Dictionary<KeyCode, Action> keyDictionary;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,32 @@ public class DemoArduino : MonoBehaviour
         {
             serial.Open();
         }
+
+        keyDictionary = new Dictionary<KeyCode, Action>
+        {
+            {KeyCode.Delete,  KeyDown_Delete},
+            {KeyCode.UpArrow,  KeyDown_UpArrow},
+        };
+    }
+
+    void KeyDown_Delete()
+    {
+        if (fanvalue == "5")
+            fanvalue = "4";
+        else
+            fanvalue = "5";
+
+        serial.Write(fanvalue);
+        if (!serial.IsOpen)
+        {
+            fanvalue = "5";
+            serial.Write(fanvalue);
+        }
+    }
+
+    void KeyDown_UpArrow()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
     private void Update()
@@ -36,6 +66,17 @@ public class DemoArduino : MonoBehaviour
         if (!serial.IsOpen)
         {
             serial.Open();
+        }
+
+        if (Input.anyKeyDown)
+        {
+            foreach (var dic in keyDictionary)
+            {
+                if (Input.GetKeyDown(dic.Key))
+                {
+                    dic.Value();
+                }
+            }
         }
     }
 

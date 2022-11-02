@@ -11,7 +11,7 @@ public class ChangeScene : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.ChangeScene(idx);
+            SceneManager.LoadScene(idx);
         }
     }
 }
