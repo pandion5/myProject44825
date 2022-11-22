@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.IO.Ports;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,22 @@ public class GameManager : MonoBehaviour
 
     public GameObject debugUI;
     public GameObject player;
+
+    public enum PortNumber
+    {
+        COM1, COM2, COM3, COM4,
+        COM5, COM6, COM7, COM8,
+        COM9, COM10, COM11, COM12,
+        COM13, COM14, COM15, COM16
+    }
+    public string key = "Delete";
+
+    private SerialPort serial;
+    private string fanvalue;
+    [SerializeField]
+    private PortNumber portNumber = PortNumber.COM5;
+    [SerializeField]
+    private string baudRate = "9600";
 
     private void Awake()
     {
@@ -64,8 +81,29 @@ public class GameManager : MonoBehaviour
             {KeyCode.UpArrow,  KeyDown_UpArrow},
             {KeyCode.DownArrow,  KeyDown_DownArrow},
             {KeyCode.Escape,  KeyDown_Esc},
+            {KeyCode.Delete,  KeyDown_Delete},
         };
-        
+
+        serial = new SerialPort(portNumber.ToString(), int.Parse(baudRate));
+        if (!serial.IsOpen)
+        {
+            serial.Open();
+        }
+    }
+
+    void KeyDown_Delete()
+    {
+        if (fanvalue == "5")
+            fanvalue = "4";
+        else
+            fanvalue = "5";
+
+        serial.Write(fanvalue);
+        if (!serial.IsOpen)
+        {
+            fanvalue = "5";
+            serial.Write(fanvalue);
+        }
     }
 
     // Update is called once per frame
@@ -80,6 +118,14 @@ public class GameManager : MonoBehaviour
                     dic.Value();
                 }
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!serial.IsOpen)
+        {
+            serial.Open();
         }
     }
 
@@ -136,5 +182,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             isPause = false;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("작동종료");
+        fanvalue = "5";
+        serial.Write(fanvalue);
     }
 }
