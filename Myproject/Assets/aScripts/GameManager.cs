@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject debugUI;
     public GameObject player;
 
+    public AudioSource soundManager;
+
     public enum PortNumber
     {
         COM1, COM2, COM3, COM4,
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(int idx)
     {
         SceneManager.LoadScene(idx);
+        soundManager.Play();
     }
 
     public void MovePlayer(Transform transform)

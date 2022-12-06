@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/aScenes/aSelectModeScene.unity
     guid: 6eeca66ffb2fcfc448d0c55cb8551f87
-  - enabled: 1
+  - enabled: 0
     path: Assets/aScenes/bTutorialOculus.unity
     guid: de22da66d79476349a3baf0ab24d2139
-  - enabled: 1
+  - enabled: 0
     path: Assets/aScenes/cForestOculus.unity
     guid: c173aaaf84ac05b43a330ecc8f52fa96
   - enabled: 1
